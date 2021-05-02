@@ -16,6 +16,7 @@ docker pull ibmcom/mq
 ```
 
 Full details for using the docker image can be found here->https://github.com/ibm-messaging/mq-docker
+* https://hub.docker.com/r/ibmcom/mq/
 
 **TL;DR**
 
@@ -29,10 +30,30 @@ docker run \
   --publish 9443:9443 \
   --detach \
   ibmcom/mq
+  
+OR
+   
+docker run --env LICENSE=accept --env MQ_QMGR_NAME=QM1 --volume qm1data:/mnt/mqm --publish 1414:1414 --publish 9443:9443 --detach --env MQ_APP_PASSWORD=passw0rd ibmcom/mq:latest
+
+$ docker ps
+$ docker exec -ti <your container id> /bin/bash
+
+$ dspmqver
+$ dspmq
+
+What you’ve done so far
+========================
+Inside the container, the MQ installation on RHEL has the following objects:
+
+Queue manager QM1
+Queue DEV.QUEUE.1
+Channel: DEV.APP.SVRCONN
+Listener: DEV.LISTENER.TCP on port 1414  
 ```
 
 Once started MQ Dev edition will be running with the following configuration
-* http://localhost:9443 - MQ Management console
+* https://localhost:9443/ibmmq/console - MQ Management console
+*https://localhost:9443/ibmmq/console/#/manage/qmgr/QM1/queues - for queues
  
   Username : admin password: passw0rd
   
@@ -67,3 +88,6 @@ the process, including the camel messages exchanges.
 http://localhost:8095/hawtio
 ```
 
+# Also you can refer to following link
+* https://developer.ibm.com/components/ibm-mq/tutorials/mq-connect-app-queue-manager-containers/#step-3-run-the-container-from-the-image
+* https://developer.ibm.com/tutorials/mq-setting-up-using-ibm-mq-console/

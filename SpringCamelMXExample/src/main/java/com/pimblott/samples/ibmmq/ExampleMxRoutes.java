@@ -15,7 +15,7 @@ public class ExampleMxRoutes extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         from("wmq:queue:DEV.QUEUE.1")
-                .to("log:JMSReceiver?level=INFO");
+                .to("log:JMSReceiver - SURENDRA ?level=INFO");
 
 
         from("timer:foo")
