@@ -17,12 +17,12 @@ public class SimpleRouteBuilder extends RouteBuilder {
 
 		// route for REST GET Call
 		from("file:C:\\Users\\BAJRACHARYA\\work\\projects\\CAMEL\\inboxREST?noop=true").setHeader(Exchange.HTTP_METHOD, simple("GET"))
-				.to("http://localhost:8080/employee?id=5").process(new MyProcessor());
+				.to("http4://localhost:8080/employee?id=5").process(new MyProcessor());
 
 		// route for REST POST Call
 		from("file:C:\\Users\\BAJRACHARYA\\work\\projects\\CAMEL\\inboxPOST?noop=true").process(new CreateEmployeeProcessor()).marshal(jsonDataFormat)
 				.setHeader(Exchange.HTTP_METHOD, simple("POST"))
-				.setHeader(Exchange.CONTENT_TYPE, constant("application/json")).to("http://localhost:8080/employee")
+				.setHeader(Exchange.CONTENT_TYPE, constant("application/json")).to("http4://localhost:8080/employee")
 				.process(new MyProcessor());
 	}
 
