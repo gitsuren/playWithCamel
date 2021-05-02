@@ -16,11 +16,11 @@ public class SimpleRouteBuilder extends RouteBuilder {
 	public void configure() throws Exception {
 
 		// route for REST GET Call
-		from("file:C:/inboxREST?noop=true").setHeader(Exchange.HTTP_METHOD, simple("GET"))
+		from("file:C:\\Users\\BAJRACHARYA\\work\\projects\\CAMEL\\inboxREST?noop=true").setHeader(Exchange.HTTP_METHOD, simple("GET"))
 				.to("http://localhost:8080/employee?id=5").process(new MyProcessor());
 
 		// route for REST POST Call
-		from("file:C:/inboxPOST?noop=true").process(new CreateEmployeeProcessor()).marshal(jsonDataFormat)
+		from("file:C:\\Users\\BAJRACHARYA\\work\\projects\\CAMEL\\inboxPOST?noop=true").process(new CreateEmployeeProcessor()).marshal(jsonDataFormat)
 				.setHeader(Exchange.HTTP_METHOD, simple("POST"))
 				.setHeader(Exchange.CONTENT_TYPE, constant("application/json")).to("http://localhost:8080/employee")
 				.process(new MyProcessor());
