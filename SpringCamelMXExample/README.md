@@ -19,6 +19,10 @@ Full details for using the docker image can be found here->https://github.com/ib
 * https://hub.docker.com/r/ibmcom/mq/
 
 **TL;DR**
+Use Docker to create a volume:
+```
+docker volume create qm1data
+```
 
 Run a default queue with all the defaults
 
@@ -49,6 +53,17 @@ Queue manager QM1
 Queue DEV.QUEUE.1
 Channel: DEV.APP.SVRCONN
 Listener: DEV.LISTENER.TCP on port 1414  
+```
+For mqweb console to check if it is running or not from inside docker container:
+```
+bash-4.4$ dspmqweb
+MQWB1124I: Server 'mqweb' is running.
+URLS:
+https://562c2d18e6eb:9443/ibmmq/console/
+https://562c2d18e6eb:9443/ibmmq/rest/
+bash-4.4$ strmqweb
+Server mqweb is already running.
+bash-4.4$
 ```
 
 Once started MQ Dev edition will be running with the following configuration
